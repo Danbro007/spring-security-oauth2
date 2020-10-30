@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="23b1be4e-9806-4361-a9f8-a0e7fad217da" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:\JavaSoftWare\maven\apache-maven-3.6.1" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1jac2hFWFuQdCcwI1YJNDRUp5B6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last.edited.regexp" value="Sample Text" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.danbro.distributed.security.uaa" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\javaProject\distributed‐security\src\main\java" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="DistributedSecurityUaaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="distributed-security-uaa" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.danbro.distributed.security.uaa.DistributedSecurityUaaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="23b1be4e-9806-4361-a9f8-a0e7fad217da" name="Default Changelist" comment="" />
+      <created>1604044061714</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604044061714</updated>
+      <workItem from="1604044062723" duration="1302000" />
+      <workItem from="1604045438563" duration="1082000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="250" y="265" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1604045566405">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="250" y="265" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1604045566405" />
+    <state x="314" y="222" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1604045568647">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="314" y="222" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1280.680@0.0.1280.680" timestamp="1604045568647" />
+    <state x="404" y="50" key="FileChooserDialogImpl" timestamp="1604045363981">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="404" y="50" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1604045363981" />
+    <state x="171" y="0" key="Maven.ArtifactSearchDialog" timestamp="1604045545191">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="171" y="0" key="Maven.ArtifactSearchDialog/0.0.1280.680@0.0.1280.680" timestamp="1604045545191" />
+    <state x="198" y="45" key="NewModule_or_Project.wizard" timestamp="1604044229781">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="198" y="45" key="NewModule_or_Project.wizard/0.0.1280.680@0.0.1280.680" timestamp="1604044229781" />
+    <state x="172" y="0" key="SettingsEditor" timestamp="1604044077537">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="172" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1604044077537" />
+    <state x="93" y="93" width="1095" height="495" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1604044744593">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="93" y="93" width="1095" height="495" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1604044744593" />
+    <state x="0" y="2" key="new project wizard" timestamp="1604044209904">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="0" y="2" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1604044209904" />
+  </component>
+</project>
