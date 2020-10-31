@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -45,18 +46,9 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private JwtAccessTokenConverter accessTokenConverter;
-
-    @Autowired
     PasswordEncoder passwordEncoder;
 
-    //将客户端信息存储到数据库
-    @Bean
-    public ClientDetailsService clientDetailsService(DataSource dataSource) {
-        ClientDetailsService clientDetailsService = new JdbcClientDetailsService(dataSource);
-        ((JdbcClientDetailsService) clientDetailsService).setPasswordEncoder(passwordEncoder);
-        return clientDetailsService;
-    }
+
 
     //客户端详情服务
     @Override
@@ -82,26 +74,17 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
         service.setClientDetailsService(clientDetailsService);//客户端详情服务
         service.setSupportRefreshToken(true);//支持刷新令牌
         service.setTokenStore(tokenStore);//令牌存储策略
-        //令牌增强
-        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(accessTokenConverter));
-        service.setTokenEnhancer(tokenEnhancerChain);
-
         service.setAccessTokenValiditySeconds(7200); // 令牌默认有效期2小时
         service.setRefreshTokenValiditySeconds(259200); // 刷新令牌默认有效期3天
         return service;
     }
 
     //设置授权码模式的授权码如何存取，暂时采用内存方式
-/*    @Bean
+    @Bean
     public AuthorizationCodeServices authorizationCodeServices() {
         return new InMemoryAuthorizationCodeServices();
-    }*/
-
-    @Bean
-    public AuthorizationCodeServices authorizationCodeServices(DataSource dataSource) {
-        return new JdbcAuthorizationCodeServices(dataSource);//设置授权码模式的授权码如何存取
     }
+
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
