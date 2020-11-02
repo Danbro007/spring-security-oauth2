@@ -2,6 +2,7 @@ package com.danbro.distributed.security.uaa.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,7 +31,8 @@ import java.util.Arrays;
  * @version 1.0
  * 授权服务配置
  **/
-
+@Configuration
+@EnableAuthorizationServer
 public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
@@ -47,6 +49,8 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    AuthorizationServerTokenServices takeService;
 
 
 
@@ -54,16 +58,15 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients)
             throws Exception {
-       clients.inMemory()// 使用in-memory存储
+       clients.inMemory()// 使用in-memory存储,存储在内存中。
                 .withClient("c1")// client_id
                 .secret(new BCryptPasswordEncoder().encode("secret"))//客户端密钥
                 .resourceIds("res1")//资源列表
                 .authorizedGrantTypes("authorization_code", "password","client_credentials","implicit","refresh_token")// 该client允许的授权类型authorization_code,password,refresh_token,implicit,client_credentials
                 .scopes("all")// 允许的授权范围
                 .autoApprove(false)//false跳转到授权页面
-                //加上验证回调地址
-                .redirectUris("http://www.baidu.com")
-                ;
+                //验证成功的回调地址
+                .redirectUris("http://www.baidu.com");
     }
 
 
@@ -91,7 +94,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
         endpoints
                 .authenticationManager(authenticationManager)//认证管理器
                 .authorizationCodeServices(authorizationCodeServices)//授权码服务
-                .tokenServices(tokenService())//令牌管理服务
+                .tokenServices(takeService)//令牌管理服务
                 .allowedTokenEndpointRequestMethods(HttpMethod.POST);
     }
 

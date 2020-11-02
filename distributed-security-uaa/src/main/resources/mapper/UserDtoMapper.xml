@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.danbro.distributed.security.uaa.mapper.UserDtoMapper">
+    <resultMap id="permissionList" type="com.danbro.distributed.security.uaa.entity.PermissionDto" autoMapping="true">
+    </resultMap>
+    <select id="getPermissionByUserId" resultMap="permissionList">
+        SELECT
+            *
+        FROM
+            t_permission
+        WHERE
+                id IN ( SELECT permission_id FROM t_role_permission WHERE role_id IN ( SELECT role_id FROM t_user_role WHERE user_id = #{userId} ) )
+    </select>
+</mapper>

@@ -13,8 +13,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  **/
 @Configuration
 public class TokenConfig {
-
-
     @Bean
     public TokenStore tokenStore() {
         //使用内存存储令牌（普通令牌）
