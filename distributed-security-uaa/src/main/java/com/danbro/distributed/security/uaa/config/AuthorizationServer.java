@@ -13,14 +13,17 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+import javax.sql.DataSource;
 import java.util.Arrays;
 
 /**
@@ -51,19 +54,25 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
 
     //客户端详情服务
+//    @Override
+//    public void configure(ClientDetailsServiceConfigurer clients)
+//            throws Exception {
+//        clients.inMemory()// 使用in-memory存储,存储在内存中。
+//                .withClient("c1")// client_id
+//                .secret(new BCryptPasswordEncoder().encode("secret"))//客户端密钥
+//                .resourceIds("res1")//资源列表
+//                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")// 该client允许的授权类型authorization_code,password,refresh_token,implicit,client_credentials
+//                .scopes("all")// 允许的授权范围
+//                .autoApprove(false)//false跳转到授权页面
+//                //验证成功的回调地址
+//                .redirectUris("http://www.baidu.com");
+//    }
     @Override
     public void configure(ClientDetailsServiceConfigurer clients)
             throws Exception {
-        clients.inMemory()// 使用in-memory存储,存储在内存中。
-                .withClient("c1")// client_id
-                .secret(new BCryptPasswordEncoder().encode("secret"))//客户端密钥
-                .resourceIds("res1")//资源列表
-                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")// 该client允许的授权类型authorization_code,password,refresh_token,implicit,client_credentials
-                .scopes("all")// 允许的授权范围
-                .autoApprove(false)//false跳转到授权页面
-                //验证成功的回调地址
-                .redirectUris("http://www.baidu.com");
+        clients.withClientDetails(clientDetailsService);
     }
+
 
 
     //令牌管理服务
@@ -84,10 +93,18 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     }
 
     //设置授权码模式的授权码如何存取，暂时采用内存方式
+//    @Bean
+//    public AuthorizationCodeServices authorizationCodeServices() {
+//        return new InMemoryAuthorizationCodeServices();
+//    }
+
+
+    // 使用数据库存储授权码
     @Bean
-    public AuthorizationCodeServices authorizationCodeServices() {
-        return new InMemoryAuthorizationCodeServices();
+    public AuthorizationCodeServices authorizationCodeServices(DataSource dataSource) {
+        return new JdbcAuthorizationCodeServices(dataSource);
     }
+
 
 
     @Override
@@ -106,6 +123,15 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
                 .checkTokenAccess("permitAll()")                  //oauth/check_token公开
                 .allowFormAuthenticationForClients()                //表单认证（申请令牌）
         ;
+    }
+
+
+
+    @Bean
+    public ClientDetailsService clientDetailsService(DataSource dataSource){
+        ClientDetailsService detailsService = new JdbcClientDetailsService(dataSource);
+        ((JdbcClientDetailsService)detailsService).setPasswordEncoder(passwordEncoder);
+        return detailsService;
     }
 
 }
