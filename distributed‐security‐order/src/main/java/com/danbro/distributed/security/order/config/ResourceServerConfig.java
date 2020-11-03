@@ -19,7 +19,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @Configuration
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     public static final String RESOURCE_ID = "res1";
 
@@ -47,7 +47,7 @@ public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**").access("#oauth2.hasScope('all')")
+                .antMatchers("/**").access("#oauth2.hasScope('ROLE_ADMIN')")
                 .and().csrf().disable()// 关闭 csrf
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);// 关闭 session
     }
